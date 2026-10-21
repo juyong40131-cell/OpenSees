@@ -3327,3 +3327,17 @@ void  MVLEM_3D::setTransformationMatrix(void) {
 	}
 
 }
+
+int
+MVLEM_3D::setParameter(const char **argv, int argc, Parameter &param)
+{
+	// forward 'shear <name> ...' (or 'matShear <name> ...') to the shear material
+	// copied into this element, e.g. parameter 1 element 5 shear mom1p
+	if (argc < 2)
+		return -1;
+
+	if (strcmp(argv[0], "shear") == 0 || strcmp(argv[0], "matShear") == 0)
+		return theMaterialsShear[0]->setParameter(&argv[1], argc - 1, param);
+
+	return -1;
+}

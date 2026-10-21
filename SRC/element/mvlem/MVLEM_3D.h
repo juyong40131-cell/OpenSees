@@ -102,6 +102,10 @@ public:
 	Response *setResponse(const char **argv, int argc, OPS_Stream &s);
 	int getResponse(int responseID, Information &eleInformation);
 
+	// parameter: 'shear <name>' is forwarded to the (copied) shear material,
+	// e.g. Hysteretic 'mom1p' -- lets the shear strength be updated during analysis
+	int setParameter(const char **argv, int argc, Parameter &param);
+
 protected:
 
 private:
